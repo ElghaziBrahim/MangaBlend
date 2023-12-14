@@ -1,0 +1,164 @@
+/* Home.module.css */
+.home {
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logoContainer {
+    flex: 1;
+}
+
+.logo {
+    max-height: 50px;
+}
+
+.userProfile {
+    display: flex;
+    align-items: center;
+}
+
+.profilePicture {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+}
+
+.leftSlider,
+.rightSlider {
+    width: 200px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.leftSlider ul,
+.rightSlider ul {
+    list-style: none;
+    padding: 0;
+}
+
+.feature {
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.feature:hover {
+    background-color: #f0f0f0;
+}
+
+main {
+    flex: 2;
+}
+
+.content {
+    background-color: #f5eeee;
+    padding: 20px;
+}
+
+.inputField {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+textarea {
+    width: calc(100% - 20px);
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+}
+
+button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.post {
+    margin: 10px 0;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.post:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.postAuthor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.postAuthor img {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.postContent {
+    word-wrap: break-word;
+}
+
+.rightSlider {
+    text-align: center;
+}
+
+.rightSlider h2 {
+    margin-bottom: 10px;
+}
+
+.rightSlider ul {
+    padding-left: 0;
+}
+
+.rightSlider li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
