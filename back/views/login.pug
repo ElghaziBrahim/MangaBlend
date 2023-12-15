@@ -1,0 +1,24 @@
+// login.pug
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Login with Gmail
+        link(rel="stylesheet" href="/styles/login.css")
+        link(rel="icon" href="/pics/logo.png" type="image/icon type")
+    body 
+        form(action="/login" method="post")
+            h2 Login
+            label(for="gmail") Email:
+            input(type="email" id="gmail" name="email", required)
+
+            label(for="password") Password:
+            input(type="password" id="password" name="password", required)
+
+            input(type="submit" value="Login")
+
+            p
+                | Don't have an account? 
+                a(href="/signup") Sign Up
+

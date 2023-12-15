@@ -12,8 +12,8 @@ const Home = () => {
           <img src={logo} alt="MangaSocial Logo" className={styles.logo} />
         </div>
         <div className={styles.userProfile}>
+          <span className={styles.username}>YourUsername</span> &nbsp; 
           <img src={profile} alt="User Profile Picture" className={styles.profilePicture} />
-          <span className={styles.username}>YourUsername</span>
         </div>
       </header>
 

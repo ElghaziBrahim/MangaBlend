@@ -1,0 +1,29 @@
+// signup.pug
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Sign Up
+        link(rel="stylesheet" href="/styles/signup.css")
+        link(rel="icon" href="/pics/logo.png" type="image/icon type")
+    body 
+        form(action="/signup" method="post")
+            h2 Sign Up
+            label(for="username") Username:
+            input(type="text" id="username" name="username" required)
+
+            label(for="gmail") Email:
+            input(type="email" id="gmail" name="email" required)
+
+            label(for="password") Password:
+            input(type="password" id="password" name="password" required)
+
+            label(for="confirmPassword") Confirm Password:
+            input(type="password" id="confirmPassword" name="confirmPassword" required)
+
+            input(type="submit" value="Sign Up")
+
+            p
+                | Already have an account? 
+                a(href="/login") Login

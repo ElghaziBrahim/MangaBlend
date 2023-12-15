@@ -1,0 +1,92 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Manga Haven | Your Mangaverse
+        link(rel="stylesheet" href="/styles/home.css")
+        link(rel="icon" href="/pics/logo.png" type="image/icon type")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+    body
+        header
+            .header-container
+                .logo
+                    img(src="pics/logo.png" alt="Manga Haven Logo")
+                .user-info
+                    p= "Manga_Master"
+                    nav
+                        a(href="/profile")
+                            i(class="fas fa-user") Profile
+                        a(href="/logout")
+                            i(class="fas fa-sign-out-alt") Logout
+        main
+            .main-container
+                .conversations
+                    h2 Recent Conversations
+                    ul
+                        li
+                            .conversation-card
+                                a(href="/chat/" + 2)
+                                    p OtakuQueen
+                                    span Have you read the new Attack on Titan chapter yet?!
+                        li
+                            .conversation-card
+                                a(href="/chat/" + 2)
+                                    p OnePieceFanatic
+                                    span Just finished My Hero Academi season 4, SO GOOD
+
+                .posts
+                    h2 Explore the Feed
+                    .post
+                        .post-card
+                            .avatar
+                                img(src="/pics/profile.png" alt="User Avatar")
+                            .content
+                                p JJK0
+                                span Jujutsu Kaisen 0 - A Must-Watch! #JJK0 #anime
+                                a(href="/post/" + 1) Read More
+                    .post
+                        .post-card
+                            .avatar
+                                img(src="/pics/profile.png" alt="User Avatar")
+                            .content
+                                p OnePieceFanatic
+                                span Looking for friends to discuss One Piece theories! #OnePiece #TheoryTime
+                                a(href="/post/" + 2) Read More
+                    .post
+                        .post-card
+                            .avatar
+                                img(src="/pics/profile.png" alt="User Avatar")
+                            .content
+                                p OnePieceFanatic
+                                span New to the manga world, help a fellow newbie! #mangahelp #newbie
+                                a(href="/post/" + 3) Read More
+
+                .new-post
+                    h2 Share Your Thoughts
+                    form(action="/post" method="POST")
+                        textarea(name="content" placeholder="What's on your mind?")
+                        button(type="submit") Post
+            .aside
+                nav
+                    ul
+                        li
+                            a(href="/settings")
+                                i(class="fas fa-cog") Settings
+                        li
+                            a(href="/explore")
+                                i(class="fas fa-users") Explore Users
+                        li
+                            a(href="/groups")
+                                i(class="fas fa-users") Groups
+                        li
+                            a(href="/about")
+                                i(class="fas fa-info-circle") About Us
+        footer
+            .footer-container
+                p
+                    i(class="fas fa-heart") &copy; 2023 Manga Haven
+                    span Connect with us:
+                    a(href="#" class="fab fa-twitter")
+                    a(href="#" class="fab fa-facebook-f")
+                    a(href="#" class="fab fa-instagram")
