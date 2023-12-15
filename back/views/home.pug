@@ -6,87 +6,59 @@ html(lang="en")
         title Manga Haven | Your Mangaverse
         link(rel="stylesheet" href="/styles/home.css")
         link(rel="icon" href="/pics/logo.png" type="image/icon type")
-        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+        script(src="https://kit.fontawesome.com/1c7ee0dc81.js" crossorigin="anonymous")
     body
-        header
-            .header-container
-                .logo
-                    img(src="pics/logo.png" alt="Manga Haven Logo")
-                .user-info
-                    p= "Manga_Master"
-                    nav
-                        a(href="/profile")
-                            i(class="fas fa-user") Profile
-                        a(href="/logout")
-                            i(class="fas fa-sign-out-alt") Logout
-        main
-            .main-container
-                .conversations
-                    h2 Recent Conversations
+        .navbar
+            .left
+                img(src="/pics/logo.png" alt="MangaBlend" width="50px")
+                i(class="fas fa-house fa-2x")
+            input(type="text" name="search" placeholder="Search Something")
+            .headerfunctions
+                i(class="fas fa-bell fa-2x")
+                i(class="fas fa-envelope fa-2x")
+            .right
+                img(src="/pics/profile.png" class="profileImage" alt="profile picture" width="50px")
+        .container
+            .main
+                .slider
+                    input(type="text" name="community_filter" placeholder="Filter")
+                    h6 Your Communities
                     ul
-                        li
-                            .conversation-card
-                                a(href="/chat/" + 2)
-                                    p OtakuQueen
-                                    span Have you read the new Attack on Titan chapter yet?!
-                        li
-                            .conversation-card
-                                a(href="/chat/" + 2)
-                                    p OnePieceFanatic
-                                    span Just finished My Hero Academi season 4, SO GOOD
-
+                        each community in ["Martial Peak", "Nano Machine", "One Piece", "Attack On Titan", "Dragon Ball"]
+                            .community= community
+                .create
+                    img(src="/pics/profile.png" alt="profile picture")
+                    input(type="text" name="new_post" placeholder="Create Post")
+                .filters
+                    .filter
+                        i(class="fa-solid fa-rocket fa-2xl")
+                        h4 Best
+                    .filter
+                        i(class="fa-solid fa-fire fa-2xl")
+                        h4 Hot
+                    .filter
+                        i(class="fa-solid fa-sun fa-2xl")
+                        h4 New
                 .posts
-                    h2 Explore the Feed
-                    .post
-                        .post-card
-                            .avatar
-                                img(src="/pics/profile.png" alt="User Avatar")
+                    each post in [1, 2, 3]
+                        .post
+                            .source
+                                img(src="/pics/profile.png" alt="profile picture")
+                                .userpost Brahim
+                                .timeposted 22 hours ago
+                            .title This is why Martial arts is the best Manga of all time
                             .content
-                                p JJK0
-                                span Jujutsu Kaisen 0 - A Must-Watch! #JJK0 #anime
-                                a(href="/post/" + 1) Read More
-                    .post
-                        .post-card
-                            .avatar
-                                img(src="/pics/profile.png" alt="User Avatar")
-                            .content
-                                p OnePieceFanatic
-                                span Looking for friends to discuss One Piece theories! #OnePiece #TheoryTime
-                                a(href="/post/" + 2) Read More
-                    .post
-                        .post-card
-                            .avatar
-                                img(src="/pics/profile.png" alt="User Avatar")
-                            .content
-                                p OnePieceFanatic
-                                span New to the manga world, help a fellow newbie! #mangahelp #newbie
-                                a(href="/post/" + 3) Read More
+                                | 1: Character Development: Many martial arts manga delve deep into the characters' backgrounds, motivations, and personal growth. Readers often connect with the characters on an emotional level as they overcome challenges and evolve.
+                                | 2: Philosophical Elements: Martial arts stories often incorporate philosophical elements, such as discipline, honor, and perseverance. The characters may follow a code of conduct or adhere to specific martial arts philosophies, adding depth to the narrative.
+                                | 3: Diverse Settings and Styles: Martial arts manga explores a variety of martial arts styles, each with its unique techniques and philosophies. This diversity allows for creative storytelling and introduces readers to different aspects of martial arts culture.
+                            .feathers
+                                .comments
+                                    i(class="fa-solid fa-message fa-2xl")
+                                    .comments_number 113 comments
+                                .share
+                                    i(class="fa-solid fa-share fa-2xl")
+                                    .share_label share
+                                .save
+                                    i(class="fa-solid fa-bookmark fa-2xl") 
+                                    .save_label save
 
-                .new-post
-                    h2 Share Your Thoughts
-                    form(action="/post" method="POST")
-                        textarea(name="content" placeholder="What's on your mind?")
-                        button(type="submit") Post
-            .aside
-                nav
-                    ul
-                        li
-                            a(href="/settings")
-                                i(class="fas fa-cog") Settings
-                        li
-                            a(href="/explore")
-                                i(class="fas fa-users") Explore Users
-                        li
-                            a(href="/groups")
-                                i(class="fas fa-users") Groups
-                        li
-                            a(href="/about")
-                                i(class="fas fa-info-circle") About Us
-        footer
-            .footer-container
-                p
-                    i(class="fas fa-heart") &copy; 2023 Manga Haven
-                    span Connect with us:
-                    a(href="#" class="fab fa-twitter")
-                    a(href="#" class="fab fa-facebook-f")
-                    a(href="#" class="fab fa-instagram")
