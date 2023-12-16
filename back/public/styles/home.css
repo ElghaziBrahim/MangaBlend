@@ -18,12 +18,14 @@ body {
 img {
     max-width: 100%;
     height: auto;
+    margin: 0 10px;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
 }
 
 .navbar {
@@ -34,10 +36,25 @@ img {
     justify-content: space-between;
     padding: 10px;
 }
+.navbar img{
+    width: 40px;
+}
+
+.navbar a h3{
+    color: white;
+}
 
 .navbar .left {
     display: flex;
     align-items: center;
+}
+
+.navbar .right {
+    display: flex;
+    align-items: center;
+}
+.navbar .right * {
+    margin: 0 10px;
 }
 
 .navbar .left img {
@@ -64,7 +81,11 @@ img {
 .create {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px 0;
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+
 }
 
 .create img {
@@ -80,17 +101,23 @@ img {
 
 .filters {
     display: flex;
-    margin-bottom: 20px;
+    margin: 10px 0;
+    background-color: white;
+    border-radius: 5px;
+
 }
 
 .filter {
     flex: 1;
     text-align: center;
+    padding: 10px;
 }
 
-.filter i {
-    margin-bottom: 5px;
+.filter h4 {
+    margin: 10px 0;
 }
+
+
 
 .posts {
     display: flex;
@@ -157,7 +184,8 @@ img {
 .slider {
     background-color: #fff;
     padding: 20px;
-    margin: 20px 0;
+    margin: 0 10px;
+    height: fit-content;
 }
 
 .slider input {

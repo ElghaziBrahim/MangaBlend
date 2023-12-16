@@ -29,6 +29,7 @@ async function authUser(req, res, next) {
     if (!isPasswordValid) {
         return res.status(401).send('Invalid password');
     }
+    req.session.user = user
     next()
 }
 

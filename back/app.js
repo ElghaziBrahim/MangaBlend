@@ -2,8 +2,26 @@ const express = require("express")
 const userRouter = require("./routes/userRoute")
 const mongoose = require("mongoose")
 const userController = require("./controllers/userController")
+const session = require("express-session")
+
 
 const app = express()
+app.use(session({
+    secret: "Un secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+}))
+app.use((req, res, next) => {
+    req.data = {
+        user: {},
+        data: {}
+    }
+    if (req.session.user) {
+        req.data.user = req.session.user
+    }
+    next()
+})
 mongoose.connect('mongodb://127.0.0.1:27017/MangaBlend')
 
 app.use(express.static("./public"))
@@ -17,10 +35,18 @@ app.use("/user", userRouter)
 
 app.get("/signup", (req, res) => res.render("signup"))
 
+
+app.get("/logout", (req, res) => {
+    req.session.user = {}
+    res.redirect("/")
+})
+
 app.post("/signup", userController.addUser, (req, res) => res.redirect("/login"))
-app.post("/login", userController.authUser, (req, res) => res.redirect("/"))
+app.post("/login", userController.authUser, (req, res) => {
+    res.redirect("/")
+})
 
 app.get("/login", (req, res) => res.render("login"))
-app.get("/", (req, res) => res.render("home"))
+app.get("/", (req, res) => res.render("home", req.data))
 
 app.listen(3000, () => console.log("server running"))
