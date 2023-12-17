@@ -25,8 +25,9 @@ const Login = () => {
 
       const result = await response.json();
       if (result.message === "worked") {
-        // Redirect to the home page
-        navigate("/"); // Use navigate instead of history.push
+
+        localStorage.setItem('token', result.data.accesToken);
+        navigate("/");
       } else {
         console.log("login failed");
         setErrorLogin(true);

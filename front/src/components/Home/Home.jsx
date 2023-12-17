@@ -3,28 +3,54 @@ import styles from './home.module.css';
 import logo from "../../assets/logo.png"
 import profile from "../../assets/profile.png"
 import { useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+
 
 const Home = () => {
+  const [userData, setUserData] = useState([])
+  const navigate = useNavigate(); // Change to useNavigate
+
+  async function hundlelogOut() {
+    console.log("log out")
+    const token = localStorage.getItem('token');
+    const response = await fetch('http://localhost:3000/logout', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result)
+
+    window.location.reload();
+
+  }
+
   useEffect(() => {
     const AuthUser = async () => {
       try {
+        const token = localStorage.getItem('token');
         const response = await fetch('http://localhost:3000/isuserauth', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           },
         });
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-
         const result = await response.json();
-        if (result.message === 'logged') {
+        if (result.access) {
           console.log('User logged in');
+          setUserData(result.data)
         } else {
           console.log('User is not logged in');
         }
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -78,19 +104,21 @@ const Home = () => {
         </div>
         <div className={styles.right}>
           {/* Assuming user is an object with a username property */}
-          {/* {user.username ? (
-            <>
-              <a href="/logout">
-                <i className="fas fa-right-to-bracket fa-xl"></i>
+          {
+            userData.username ? (
+              <>
+                <a onClick={hundlelogOut}>
+                  <i className="fas fa-right-to-bracket fa-xl"></i>
+                </a>
+                <div className={styles.username}>{userData.username}</div>
+                <img src={profile} className={styles.profileImage} alt="profile picture" width="50px" />
+              </>
+            ) : (
+              <a href="/login">
+                <h3>Login</h3>
               </a>
-              <div className={styles.username}>{user.username}</div>
-              <img src="/pics/profile.png" className={styles.profileImage} alt="profile picture" width="50px" />
-            </>
-          ) : ( */}
-          <a href="/login">
-            <h3>Login</h3>
-          </a>
-          {/* )} */}
+            )
+          }
         </div>
       </div>
 
