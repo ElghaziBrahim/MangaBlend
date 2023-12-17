@@ -16,17 +16,15 @@ html(lang="en")
                 i(class="fas fa-bell fa-xl")
                 i(class="fas fa-envelope fa-xl")
             .right
-                if(user.username)
-                    a(href="/logout") 
+                if user.username
+                    a(href="/logout")
                         i(class="fas fa-right-to-bracket fa-xl")
-                    .username=user.username 
+                    .username=user.username
                     img(src="/pics/profile.png" class="profileImage" alt="profile picture" width="50px")
                 else
                     a(href="/login")
-                        h3 login
+                        h3 Login
         .container
-
-
             .main
                 .create
                     img(src="/pics/profile.png" alt="profile picture")
@@ -59,14 +57,13 @@ html(lang="en")
                                     .comments_number 113 comments
                                 .share
                                     i(class="fa-solid fa-share fa-2xl")
-                                    .share_label share
+                                    .share_label Share
                                 .save
                                     i(class="fa-solid fa-bookmark fa-2xl") 
-                                    .save_label save
+                                    .save_label Save
             .slider
                 input(type="text" name="community_filter" placeholder="Filter")
                 h6 Your Communities
                 ul
                     each community in ["Martial Peak", "Nano Machine", "One Piece", "Attack On Titan", "Dragon Ball"]
                         .community= community
-

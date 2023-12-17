@@ -22,14 +22,14 @@ async function authUser(req, res, next) {
     console.log(email)
     const user = await userModule.findOne({ email })
     if (!user) {
-        return res.status(404).send('User not found');
+        return res.send('User not found');
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-        return res.status(401).send('Invalid password');
+        return res.send({ message: 'Invalid password' });
     }
-    req.session.user = user
+    req.user = user
     next()
 }
 
