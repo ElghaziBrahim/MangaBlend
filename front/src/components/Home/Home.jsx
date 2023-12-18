@@ -23,6 +23,7 @@ const Home = () => {
     });
     const result = await response.json();
     console.log(result)
+    localStorage.removeItem('token');
 
     window.location.reload();
 
