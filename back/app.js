@@ -16,7 +16,7 @@ app.use(express.static("./public"))
 
 app.get("/logout", userController.logOutUser)
 app.get("/isuserauth", userController.IsUserLogged)
-app.post("/signup", userController.addUser, (req, res) => res.redirect("/login"))
+app.post("/signup", userController.addUser)
 app.post("/login", userController.authUser)
 
 app.listen(3000, () => console.log("Server running on port 3000"))
