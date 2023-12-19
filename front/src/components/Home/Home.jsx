@@ -1,40 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { handleLogout, authenticateUser, addPost, getPosts } from '../../functions';
 import styles from './home.module.css';
-import logo from "../../assets/logo.png"
-import profile from "../../assets/profile.png"
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
-import { hundlelogOut, AuthUser, addPost, getPosts } from "../../functions"
-
+import logo from '../../assets/logo.png';
+import profile from '../../assets/profile.png';
 
 const Home = () => {
-  const [userData, setUserData] = useState([])
-  const navigate = useNavigate(); // Change to useNavigate
-  const [isAddPost, setIsAddPost] = useState(false)
-  const [postTitle, setPostTitle] = useState("")
-  const [postContent, setPostContent] = useState("")
-  const [posts, setPosts] = useState([])
+  const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
+  const [isAddPost, setIsAddPost] = useState(false);
+  const [postTitle, setPostTitle] = useState('');
+  const [postContent, setPostContent] = useState('');
+  const [posts, setPosts] = useState([]);
 
-
-
-  function handleNewPost(e) {
+  const handleNewPost = (e) => {
     e.preventDefault();
-    console.log("new post")
-    setIsAddPost(false)
+    setIsAddPost(false);
+
     const post = {
       title: postTitle,
-      content: postContent
-    }
-    setPostContent("")
-    setPostTitle("")
-    addPost(post,setPosts)
-  }
+      content: postContent,
+    };
 
+    setPostContent('');
+    setPostTitle('');
+    addPost(post, setPosts);
+  };
 
   useEffect(() => {
-    AuthUser(userData, setUserData)
-    getPosts(setPosts)
+    authenticateUser(userData, setUserData);
+    getPosts(setPosts);
   }, []);
 
   return (
@@ -52,7 +47,7 @@ const Home = () => {
           {
             userData.username ? (
               <>
-                <a onClick={hundlelogOut}>
+                <a onClick={handleLogout}>
                   <i className="fas fa-right-to-bracket fa-xl"></i>
                 </a>
                 <div className={styles.username}>{userData.username}</div>
@@ -73,6 +68,7 @@ const Home = () => {
             userData.username ? (
               isAddPost ? (
                 <form onSubmit={handleNewPost} className={styles.formNewPost}>
+                  <div className={styles.removeAddPost} onClick={() => setIsAddPost(false)}>x</div>
                   <input type="text" onChange={(e) => setPostTitle(e.target.value)} value={postTitle} name="title" id="new_post_title" placeholder='title' />
                   <input type="text" onChange={(e) => setPostContent(e.target.value)} value={postContent} name="content" contentEditable="true" id={styles.new_post_content} placeholder='content' />
                   <button type="submit">post</button>

@@ -114,6 +114,8 @@ img {
     margin: 0;
     max-width: none;
     height: fit-content;
+    position: relative;
+    padding: 30px 20px;
 }
 
 .formNewPost button {
@@ -137,6 +139,15 @@ img {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 0;
+}
+
+.removeAddPost {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 1.3em;
+    cursor: pointer;
+
 }
 
 /* Filters styles */
