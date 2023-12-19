@@ -5,93 +5,38 @@ import profile from "../../assets/profile.png"
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import { hundlelogOut, AuthUser, addPost, getPosts } from "../../functions"
 
 
 const Home = () => {
   const [userData, setUserData] = useState([])
   const navigate = useNavigate(); // Change to useNavigate
+  const [isAddPost, setIsAddPost] = useState(false)
+  const [postTitle, setPostTitle] = useState("")
+  const [postContent, setPostContent] = useState("")
+  const [posts, setPosts] = useState([])
 
-  async function hundlelogOut() {
-    console.log("log out")
-    const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:3000/logout', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    const result = await response.json();
-    console.log(result)
-    localStorage.removeItem('token');
 
-    window.location.reload();
 
+  function handleNewPost(e) {
+    e.preventDefault();
+    console.log("new post")
+    setIsAddPost(false)
+    const post = {
+      title: postTitle,
+      content: postContent
+    }
+    setPostContent("")
+    setPostTitle("")
+    addPost(post,setPosts)
   }
 
+
   useEffect(() => {
-    const AuthUser = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3000/isuserauth', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result = await response.json();
-        if (result.access) {
-          console.log('User logged in');
-          setUserData(result.data)
-        } else {
-          console.log('User is not logged in');
-        }
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    AuthUser()
+    AuthUser(userData, setUserData)
+    getPosts(setPosts)
   }, []);
-  const posts = [
-    {
-      user: 'Brahim',
-      timePosted: '22 hours ago',
-      title: 'This is why Martial arts is the best Manga of all time',
-      content: [
-        '1: Character Development: Many martial arts manga delve deep into the characters\' backgrounds, motivations, and personal growth. Readers often connect with the characters on an emotional level as they overcome challenges and evolve.',
-        '2: Philosophical Elements: Martial arts stories often incorporate philosophical elements, such as discipline, honor, and perseverance. The characters may follow a code of conduct or adhere to specific martial arts philosophies, adding depth to the narrative.',
-        '3: Diverse Settings and Styles: Martial arts manga explores a variety of martial arts styles, each with its unique techniques and philosophies. This diversity allows for creative storytelling and introduces readers to different aspects of martial arts culture.',
-      ],
-      comments: 113,
-    }, {
-      user: 'Brahim',
-      timePosted: '22 hours ago',
-      title: 'This is why Martial arts is the best Manga of all time',
-      content: [
-        '1: Character Development: Many martial arts manga delve deep into the characters\' backgrounds, motivations, and personal growth. Readers often connect with the characters on an emotional level as they overcome challenges and evolve.',
-        '2: Philosophical Elements: Martial arts stories often incorporate philosophical elements, such as discipline, honor, and perseverance. The characters may follow a code of conduct or adhere to specific martial arts philosophies, adding depth to the narrative.',
-        '3: Diverse Settings and Styles: Martial arts manga explores a variety of martial arts styles, each with its unique techniques and philosophies. This diversity allows for creative storytelling and introduces readers to different aspects of martial arts culture.',
-      ],
-      comments: 113,
-    }, {
-      user: 'Brahim',
-      timePosted: '22 hours ago',
-      title: 'This is why Martial arts is the best Manga of all time',
-      content: [
-        '1: Character Development: Many martial arts manga delve deep into the characters\' backgrounds, motivations, and personal growth. Readers often connect with the characters on an emotional level as they overcome challenges and evolve.',
-        '2: Philosophical Elements: Martial arts stories often incorporate philosophical elements, such as discipline, honor, and perseverance. The characters may follow a code of conduct or adhere to specific martial arts philosophies, adding depth to the narrative.',
-        '3: Diverse Settings and Styles: Martial arts manga explores a variety of martial arts styles, each with its unique techniques and philosophies. This diversity allows for creative storytelling and introduces readers to different aspects of martial arts culture.',
-      ],
-      comments: 113,
-    }
-  ]
+
   return (
     <div>
       <div className={styles.navbar}>
@@ -104,7 +49,6 @@ const Home = () => {
           <i className="fas fa-envelope fa-xl"></i>
         </div>
         <div className={styles.right}>
-          {/* Assuming user is an object with a username property */}
           {
             userData.username ? (
               <>
@@ -125,10 +69,24 @@ const Home = () => {
 
       <div className={styles.container}>
         <div className={styles.main}>
-          <div className={styles.create}>
-            <img src={profile} alt="profile picture" />
-            <input type="text" name="new_post" placeholder="Create Post" />
-          </div>
+          {
+            userData.username ? (
+              isAddPost ? (
+                <form onSubmit={handleNewPost} className={styles.formNewPost}>
+                  <input type="text" onChange={(e) => setPostTitle(e.target.value)} value={postTitle} name="title" id="new_post_title" placeholder='title' />
+                  <input type="text" onChange={(e) => setPostContent(e.target.value)} value={postContent} name="content" contentEditable="true" id={styles.new_post_content} placeholder='content' />
+                  <button type="submit">post</button>
+                </form>
+              ) : (
+                <div className={styles.create}>
+                  <img src={profile} alt="profile picture" />
+                  <input onClick={() => setIsAddPost(true)} type="text" name="new_post" placeholder="Create Post" />
+                </div>
+              )
+            ) : null
+          }
+
+
 
           <div className={styles.filters}>
             <div className={styles.filter}>
@@ -150,14 +108,12 @@ const Home = () => {
               <div key={index} className={styles.post}>
                 <div className={styles.source}>
                   <img src={profile} alt="profile picture" />
-                  <div className={styles.userpost}>{post.user}</div>
+                  <div className={styles.userpost}>{post.username}</div>
                   <div className={styles.timeposted}>{post.timePosted}</div>
                 </div>
                 <div className={styles.title}>{post.title}</div>
                 <div className={styles.content}>
-                  {post.content.map((paragraph, pIndex) => (
-                    <p key={pIndex}>{paragraph}</p>
-                  ))}
+                  {post.content}
                 </div>
                 <div className={styles.feathers}>
                   <div className={styles.comments}>
@@ -183,7 +139,7 @@ const Home = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -38,8 +38,9 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
-    const userInfo = { email: email, password: password };
     e.preventDefault();
+    const userInfo = { email: email, password: password };
+
     AuthUser(userInfo);
   };
 

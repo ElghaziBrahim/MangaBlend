@@ -23,9 +23,6 @@ async function addUser(req, res, next) {
     } else {
         res.json({ message: 'passwrd and confirmation password are not the same' })
     }
-
-
-
 }
 async function authUser(req, res, next) {
     const email = req.body.email
@@ -35,12 +32,12 @@ async function authUser(req, res, next) {
     if (!user) {
         return res.send('User not found');
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
         return res.send({ message: 'Invalid password' });
     }
-    const token = jwt.sign({ id: user._id }, "mySecretKey", { expiresIn: "30s" })
+    const token = jwt.sign({ id: user._id, username: user.username }, "mySecretKey", { expiresIn: "24h" })
     res.json({
         message: 'worked', data: { username: user.username, gmail: user.email, accesToken: token }
     })

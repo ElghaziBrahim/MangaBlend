@@ -8,6 +8,8 @@ ul,
 li {
     margin: 0;
     padding: 0;
+
+
 }
 
 
@@ -16,6 +18,11 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: block;
+
+}
+
+html * {
+    box-sizing: border-box;
 }
 
 img {
@@ -25,7 +32,7 @@ img {
 }
 
 .container {
-    max-width: 1200px;
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
     display: flex;
@@ -63,6 +70,10 @@ img {
     margin-right: 10px;
 }
 
+.profileImage {
+    border-radius: 50%;
+}
+
 .navbar input {
     padding: 5px 10px;
     border-radius: 5px;
@@ -85,6 +96,7 @@ img {
 /* Main container styles */
 .container .main {
     display: flex;
+    width: 70%;
     flex-direction: column;
 }
 
@@ -98,6 +110,23 @@ img {
     padding: 10px;
 }
 
+.formNewPost {
+    margin: 0;
+    max-width: none;
+    height: fit-content;
+}
+
+.formNewPost button {
+    padding: 5px 20px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+
+
+
 .create img {
     margin-right: 10px;
 }
@@ -107,6 +136,7 @@ img {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin: 0;
 }
 
 /* Filters styles */
@@ -201,6 +231,7 @@ img {
     padding: 20px;
     margin: 0 10px;
     height: fit-content;
+    width: 30%;
 }
 
 .slider input {
