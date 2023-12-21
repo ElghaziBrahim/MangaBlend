@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleLogout, authenticateUser, addPost, getPosts } from '../../functions';
+import { handleLogout, authenticateUser, addPost, getPosts,timeAgo } from '../../functions';
 import styles from './home.module.css';
 import logo from '../../assets/logo.png';
 import profile from '../../assets/profile.png';
@@ -105,7 +105,7 @@ const Home = () => {
                 <div className={styles.source}>
                   <img src={profile} alt="profile picture" />
                   <div className={styles.userpost}>{post.username}</div>
-                  <div className={styles.timeposted}>{post.timePosted}</div>
+                  <div className={styles.timeposted}>{timeAgo(new Date(post.timePosted))}</div>
                 </div>
                 <div className={styles.title}>{post.title}</div>
                 <div className={styles.content}>

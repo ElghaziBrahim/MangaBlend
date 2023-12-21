@@ -77,3 +77,31 @@ export const getPosts = async (setPosts) => {
     console.log({ posts });
     setPosts(posts);
 };
+export function timeAgo(fromDate) {
+    var currentDate = new Date();
+    var timeDifference = currentDate.getTime() - fromDate.getTime();
+    var seconds = Math.floor(timeDifference / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
+    var months = Math.floor(days / 30);
+    var years = Math.floor(days / 365);
+    if (years > 0) {
+        return "".concat(years, " ").concat(years === 1 ? 'year' : 'years', " ago");
+    }
+    else if (months > 0) {
+        return "".concat(months, " ").concat(months === 1 ? 'month' : 'months', " ago");
+    }
+    else if (days > 0) {
+        return "".concat(days, " ").concat(days === 1 ? 'day' : 'days', " ago");
+    }
+    else if (hours > 0) {
+        return "".concat(hours, " ").concat(hours === 1 ? 'hour' : 'hours', " ago");
+    }
+    else if (minutes > 0) {
+        return "".concat(minutes, " ").concat(minutes === 1 ? 'minute' : 'minutes', " ago");
+    }
+    else {
+        return "".concat(seconds, " ").concat(seconds === 1 ? 'second' : 'seconds', " ago");
+    }
+}
