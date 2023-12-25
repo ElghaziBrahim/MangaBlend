@@ -105,3 +105,12 @@ export function timeAgo(fromDate) {
         return "".concat(seconds, " ").concat(seconds === 1 ? 'second' : 'seconds', " ago");
     }
 }
+
+export async function openComments(id, setPostComments, setShowComments) {
+    console.log({ id })
+    const response = await fetch(`${API_URL}/post/byid/${id}`);
+    const post = await response.json();
+    console.log({ post });
+    setShowComments(true)
+    setPostComments(post)
+}

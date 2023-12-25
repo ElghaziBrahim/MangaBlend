@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleLogout, authenticateUser, addPost, getPosts,timeAgo } from '../../functions';
+import { handleLogout, authenticateUser, addPost, getPosts, timeAgo, openComments } from '../../functions';
 import styles from './home.module.css';
 import logo from '../../assets/logo.png';
 import profile from '../../assets/profile.png';
@@ -12,6 +12,9 @@ const Home = () => {
   const [postTitle, setPostTitle] = useState('');
   const [postContent, setPostContent] = useState('');
   const [posts, setPosts] = useState([]);
+  const [showComments, setShowComments] = useState(false);
+  const [postComments, setPostComments] = useState([]);
+
 
   const handleNewPost = (e) => {
     e.preventDefault();
@@ -100,8 +103,38 @@ const Home = () => {
           </div>
 
           <div className={styles.posts}>
+            {showComments &&
+              <div className={styles.commentsPost}>
+                <div className={styles.post}>
+                  <div className={styles.source}>
+                    <img src={profile} alt="profile picture" />
+                    <div className={styles.userpost}>{postComments.post.username}</div>
+                    <div className={styles.timeposted}>{timeAgo(new Date(postComments.post.timePosted))}</div>
+                  </div>
+                  <div className={styles.title}>{postComments.post.title}</div>
+                  <div className={styles.content}>
+                    {postComments.post.content}
+                  </div>
+                  <div className={styles.feathers}>
+                    <div className={styles.comments}>
+                      <form action="">
+                        <input type="text" placeholder='add comment' />
+                      </form>
+                      {postComments.comments.map((comment, index) => (
+                        <div className={styles.comment}>
+                          <div className={styles.userpost}>{comment.username}</div>
+                          <div className={styles.contentComment}>{comment.content}</div>
+                        </div>
+                      ))
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>}
             {posts.map((post, index) => (
               <div key={index} className={styles.post}>
+
+
                 <div className={styles.source}>
                   <img src={profile} alt="profile picture" />
                   <div className={styles.userpost}>{post.username}</div>
@@ -114,7 +147,7 @@ const Home = () => {
                 <div className={styles.feathers}>
                   <div className={styles.comments}>
                     <i className="fa-solid fa-message fa-2xl"></i>
-                    <div className={styles.comments_number}>{post.comments} comments</div>
+                    <div onClick={() => openComments(post._id, setPostComments, setShowComments)} className={styles.comments_number}>{post.comments} comments</div>
                   </div>
                   {/* Add share and save functionality as needed */}
                 </div>

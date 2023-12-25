@@ -1,5 +1,6 @@
 const postModule = require("../modules/postModule")
 const jwt = require("jsonwebtoken")
+const commentModule = require("../modules/commentModule")
 
 const getAllPosts = async (req, res) => {
     const posts = await postModule.find()
@@ -24,5 +25,13 @@ function createPost(req, res) {
     })
 
 }
+async function getPostById(req, res) {
+    const id = req.params.id;
 
-module.exports = { getAllPosts, createPost }
+    const post = await postModule.findOne({ _id: id }).exec();
+    const comments = await commentModule.find({ post_id: id }).exec();
+
+    res.send({ post: post, comments: comments })
+}
+
+module.exports = { getAllPosts, createPost, getPostById }
