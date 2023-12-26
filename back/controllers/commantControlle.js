@@ -1,7 +1,8 @@
 const commentModule = require("../modules/commentModule")
 const jwt = require("jsonwebtoken")
+const postModule = require("../modules/postModule")
 
-function addComment(req, res) {
+async function addComment(req, res) {
     const token = req.body.token
     const comment = req.body.comment
     const postId = req.body.postId
@@ -17,10 +18,23 @@ function addComment(req, res) {
                 content: comment
             })
             newComment.save()
+            const updatedPost = await postModule.findByIdAndUpdate(
+                postId,
+                { $inc: { comments: 1 } },
+                { new: true }
+            );
+
+            if (updatedPost) {
+                console.log('Post updated successfully:', updatedPost);
+            } else {
+                console.log('No post found with the provided ID.');
+            }
 
             res.json({ message: "added done" })
         }
     })
 }
+
+
 
 module.exports = { addComment }

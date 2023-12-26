@@ -267,6 +267,9 @@ img {
     cursor: auto;
 }
 
+.commentsPost .comment{
+    margin-bottom: 10px;
+}
 .commentsPost .comments form {
     max-width: none;
     margin-bottom: 30px;

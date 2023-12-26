@@ -111,7 +111,7 @@ export async function openComments(id, setPostComments, setShowComments) {
     setPostComments(post)
 }
 
-export async function addNewComment(e, newComment, postId, setShowComments) {
+export async function addNewComment(e, newComment, postId, setShowComments,setPosts) {
     e.preventDefault();
     const data = {
         comment: newComment,
@@ -133,6 +133,10 @@ export async function addNewComment(e, newComment, postId, setShowComments) {
     }
     const result = await response.json()
     setShowComments(false)
+    getPosts(setPosts)
 
     console.log({ result })
 }
+
+
+

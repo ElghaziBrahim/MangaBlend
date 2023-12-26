@@ -123,7 +123,7 @@ const Home = () => {
                   </div>
                   <div className={styles.feathers}>
                     <div className={styles.comments}>
-                      <form onSubmit={(e) => addNewComment(e, newComment, postComments.post._id,setShowComments)}>
+                      <form onSubmit={(e) => addNewComment(e, newComment, postComments.post._id, setShowComments,setPosts)}>
                         <input type="text" placeholder='add comment' onChange={(e) => setNewComment(e.target.value)} />
                         <button type="submit">Add</button>
                       </form>
@@ -156,7 +156,6 @@ const Home = () => {
                     <i className="fa-solid fa-message fa-2xl"></i>
                     <div onClick={() => openComments(post._id, setPostComments, setShowComments)} className={styles.comments_number}>{post.comments} comments</div>
                   </div>
-                  {/* Add share and save functionality as needed */}
                 </div>
               </div>
             ))}

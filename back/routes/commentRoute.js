@@ -3,4 +3,5 @@ const commentController = require("../controllers/commantControlle")
 
 route.post("/new", commentController.addComment)
 
+
 module.exports = route
