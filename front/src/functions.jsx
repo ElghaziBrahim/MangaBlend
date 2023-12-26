@@ -37,7 +37,6 @@ export const authenticateUser = async (userData, setUserData) => {
         const result = await response.json();
 
         if (result.access) {
-            console.log('User logged in');
             setUserData(result.data);
         } else {
             console.log('User is not logged in');
@@ -74,7 +73,6 @@ export const addPost = async (post, setPosts) => {
 export const getPosts = async (setPosts) => {
     const response = await fetch(`${API_URL}/post`);
     const posts = await response.json();
-    console.log({ posts });
     setPosts(posts);
 };
 export function timeAgo(fromDate) {
@@ -107,10 +105,34 @@ export function timeAgo(fromDate) {
 }
 
 export async function openComments(id, setPostComments, setShowComments) {
-    console.log({ id })
     const response = await fetch(`${API_URL}/post/byid/${id}`);
     const post = await response.json();
-    console.log({ post });
     setShowComments(true)
     setPostComments(post)
+}
+
+export async function addNewComment(e, newComment, postId, setShowComments) {
+    e.preventDefault();
+    const data = {
+        comment: newComment,
+        token: localStorage.getItem('token'),
+        postId
+    };
+    console.log({ data })
+
+    const response = await fetch(`${API_URL}/comment/new`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const result = await response.json()
+    setShowComments(false)
+
+    console.log({ result })
 }

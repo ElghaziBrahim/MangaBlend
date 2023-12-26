@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleLogout, authenticateUser, addPost, getPosts, timeAgo, openComments } from '../../functions';
+import { handleLogout, authenticateUser, addPost, getPosts, timeAgo, openComments, addNewComment } from '../../functions';
 import styles from './home.module.css';
 import logo from '../../assets/logo.png';
 import profile from '../../assets/profile.png';
@@ -14,6 +14,10 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [postComments, setPostComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+
+
+
 
 
   const handleNewPost = (e) => {
@@ -106,6 +110,8 @@ const Home = () => {
             {showComments &&
               <div className={styles.commentsPost}>
                 <div className={styles.post}>
+                  <div onClick={() => setShowComments(false)} className={styles.exitcommends}> <i className="fa-solid fa-xmark"></i>  </div>
+
                   <div className={styles.source}>
                     <img src={profile} alt="profile picture" />
                     <div className={styles.userpost}>{postComments.post.username}</div>
@@ -117,8 +123,9 @@ const Home = () => {
                   </div>
                   <div className={styles.feathers}>
                     <div className={styles.comments}>
-                      <form action="">
-                        <input type="text" placeholder='add comment' />
+                      <form onSubmit={(e) => addNewComment(e, newComment, postComments.post._id,setShowComments)}>
+                        <input type="text" placeholder='add comment' onChange={(e) => setNewComment(e.target.value)} />
+                        <button type="submit">Add</button>
                       </form>
                       {postComments.comments.map((comment, index) => (
                         <div className={styles.comment}>

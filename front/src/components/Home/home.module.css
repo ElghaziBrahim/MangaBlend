@@ -255,6 +255,7 @@ img {
 .commentsPost .post {
     scroll-behavior: smooth;
     margin: 0;
+    position: relative;
 }
 
 .commentsPost .comments {
@@ -269,7 +270,28 @@ img {
 .commentsPost .comments form {
     max-width: none;
     margin-bottom: 30px;
-    
+
+}
+
+.commentsPost .comments form button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+.exitcommends {
+    font-size: 20px;
+    position: absolute;
+    color: black;
+
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
 }
 
 /* Track */

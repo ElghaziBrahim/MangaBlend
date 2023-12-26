@@ -4,6 +4,7 @@ const userController = require("./controllers/userController")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const postRoute = require("./routes/postRoute")
+const commentRoute=require("./routes/commentRoute")
 
 const app = express()
 
@@ -15,6 +16,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/MangaBlend')
 
 app.use(express.static("./public"))
 app.use("/post", postRoute)
+app.use("/comment", commentRoute)
+
+
 
 app.get("/logout", userController.logOutUser)
 app.get("/isuserauth", userController.IsUserLogged)
