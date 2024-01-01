@@ -1,0 +1,190 @@
+/* Reset some default browser styles */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+
+
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: block;
+
+}
+
+html * {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 10px;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.navbar img {
+    width: 40px;
+}
+
+.navbar a h3 {
+    color: white;
+}
+
+.navbar .left,
+.navbar .right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .right * {
+    margin: 0 10px;
+}
+
+.navbar .left img {
+    margin-right: 10px;
+}
+
+.profileImage {
+    border-radius: 50%;
+}
+
+.navbar input {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    width: fit-content;
+    margin: 0;
+}
+
+/* backcolor */
+.backcolor {
+    background-color: rgb(55, 203, 230);
+    height: 80px;
+}
+
+
+
+/* header styles */
+
+.communityname {
+    text-align: start;
+    margin: auto 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.header {
+    background-color: #e7e3e3;
+}
+
+.contentheader img {
+    width: 80px;
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+.contentheader {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    padding: 10px;
+
+}
+
+/* container styles */
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+/* posts styles */
+/* Posts styles */
+.posts {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.post {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+.post img{
+width: 30px;
+}
+/* Source styles */
+.source {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.source img {
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.userpost {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.timeposted {
+    color: #888;
+}
+
+/* Title styles */
+.title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Content styles */
+.content {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Feathers styles */
+.feathers {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Comments, Share, Save styles */
+.comments,
+.share,
+.save {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.comments i,
+.share i,
+.save i {
+    margin-right: 5px;
+}

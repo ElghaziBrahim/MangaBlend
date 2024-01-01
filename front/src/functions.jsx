@@ -75,6 +75,11 @@ export const getPosts = async (setPosts) => {
     const posts = await response.json();
     setPosts(posts);
 };
+export const getPostsByCo = async (setPosts, name) => {
+    const response = await fetch(`${API_URL}/post/byco/${name}`);
+    const posts = await response.json();
+    setPosts(posts);
+};
 export function timeAgo(fromDate) {
     var currentDate = new Date();
     var timeDifference = currentDate.getTime() - fromDate.getTime();
@@ -111,7 +116,7 @@ export async function openComments(id, setPostComments, setShowComments) {
     setPostComments(post)
 }
 
-export async function addNewComment(e, newComment, postId, setShowComments,setPosts) {
+export async function addNewComment(e, newComment, postId, setShowComments, setPosts) {
     e.preventDefault();
     const data = {
         comment: newComment,

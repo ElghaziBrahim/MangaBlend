@@ -34,4 +34,13 @@ async function getPostById(req, res) {
     res.send({ post: post, comments: comments })
 }
 
-module.exports = { getAllPosts, createPost, getPostById }
+async function getPostByCo(req, res) {
+    const comSlug = req.params.co;
+    console.log({ comSlug })
+    const posts = await postModule.find({ communitySlug: comSlug }).exec();
+    console.log(posts)
+
+    res.send(posts)
+}
+
+module.exports = { getAllPosts, createPost, getPostById, getPostByCo }

@@ -197,7 +197,7 @@ const Home = () => {
               <div key={index} className={styles.post}>
                 <div className={styles.source}>
                   <img src={profile} alt="profile picture" />
-                  <div className={styles.userpost}>{post.username} - {post.CommunitySlug}</div>
+                  <div className={styles.userpost}>{post.username} - {post.communitySlug}</div>
                   <div className={styles.timeposted}>
                     {timeAgo(new Date(post.timePosted))}
                   </div>
