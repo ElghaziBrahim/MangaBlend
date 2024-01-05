@@ -1,0 +1,219 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Create post styles */
+.create {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px 0;
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+}
+
+.formNewPost {
+    margin: 0;
+    max-width: none;
+    height: fit-content;
+    position: relative;
+    padding: 30px 20px;
+}
+
+.formNewPost button {
+    padding: 5px 20px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+
+
+
+.create img {
+    margin-right: 10px;
+    width: 30px;
+
+}
+
+
+.create input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.removeAddPost {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 1.3em;
+    cursor: pointer;
+
+}
+
+/* Filters styles */
+.filters {
+    display: flex;
+    margin: 10px 0;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.filter {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.filter h4 {
+    margin: 10px 0;
+}
+
+/* Posts styles */
+.posts {
+    display: flex;
+    flex-direction: column;
+}
+
+.post {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Source styles */
+.source {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.source img {
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 30px;
+}
+
+.userpost {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.timeposted {
+    color: #888;
+}
+
+/* Title styles */
+.title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Content styles */
+.content {
+    line-height: 1.6;
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+
+/* Feathers styles */
+.feathers {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Comments, Share, Save styles */
+.comments,
+.share,
+.save {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.comments i,
+.share i,
+.save i {
+    margin-right: 5px;
+}
+
+.commentsPost {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    border-radius: 10px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+
+.commentsPost .post {
+    scroll-behavior: smooth;
+    margin: 0;
+    position: relative;
+}
+
+.commentsPost .comments {
+    border: 1px solid black;
+    padding: 20px;
+    width: 100%;
+    border-radius: 5px;
+    display: block;
+    cursor: auto;
+}
+
+.commentsPost .comment {
+    margin-bottom: 10px;
+}
+
+.commentsPost .comments form {
+    max-width: none;
+    margin-bottom: 30px;
+
+}
+
+.commentsPost .comments form button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+.exitcommends {
+    font-size: 20px;
+    position: absolute;
+    color: black;
+
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}

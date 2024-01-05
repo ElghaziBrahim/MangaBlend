@@ -7,7 +7,7 @@ const post = mongoose.model("post", new mongoose.Schema({
     username: String,
     comments: { type: Number, default: 0 },
     timePosted: { type: Date, default: new Date() },
-    CommunitySlug  : String
+    communitySlug  : String
 }))
 
 module.exports = post

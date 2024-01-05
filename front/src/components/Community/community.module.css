@@ -87,7 +87,7 @@ img {
 
 .contentheader img {
     width: 120px;
-    
+
     border: 2px solid black;
     border-radius: 10px;
 }
@@ -101,9 +101,14 @@ img {
 
 /* Container styles */
 .container {
-    width: 80%;
+    width: 90%;
     margin: auto;
     display: flex;
+    margin-top: 20px;
+}
+
+.community_posts {
+    width: 70%;
 }
 
 /* Backcolor styles */
@@ -118,7 +123,6 @@ img {
     border: 1px solid #ddd;
     padding: 20px;
     border-radius: 8px;
-    margin-top: 20px;
     margin-left: 20px;
     height: fit-content;
     width: 30%;

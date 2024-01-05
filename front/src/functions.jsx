@@ -46,11 +46,12 @@ export const authenticateUser = async (userData, setUserData) => {
     }
 };
 
-export const addPost = async (post, setPosts) => {
+export const addPost = async (post, getdata_posts) => {
     const data = {
         post,
         token: localStorage.getItem('token'),
     };
+
 
     const response = await fetch(`${API_URL}/post/new`, {
         method: 'POST',
@@ -67,7 +68,7 @@ export const addPost = async (post, setPosts) => {
     const result = await response.json();
     console.log(result);
 
-    getPosts(setPosts);
+    getdata_posts()
 };
 
 export const getPosts = async (setPosts) => {
@@ -76,6 +77,7 @@ export const getPosts = async (setPosts) => {
     setPosts(posts);
 };
 export const getPostsByCo = async (setPosts, name) => {
+    console.log(name)
     const response = await fetch(`${API_URL}/post/byco/${name}`);
     const posts = await response.json();
     setPosts(posts);
@@ -116,7 +118,7 @@ export async function openComments(id, setPostComments, setShowComments) {
     setPostComments(post)
 }
 
-export async function addNewComment(e, newComment, postId, setShowComments, setPosts) {
+export async function addNewComment(e, newComment, postId, setShowComments, getdata_posts) {
     e.preventDefault();
     const data = {
         comment: newComment,
@@ -138,9 +140,7 @@ export async function addNewComment(e, newComment, postId, setShowComments, setP
     }
     const result = await response.json()
     setShowComments(false)
-    getPosts(setPosts)
-
-    console.log({ result })
+    getdata_posts()
 }
 
 export async function getCommunityInfoBySlug(slug, setCommunityInfo) {
@@ -148,6 +148,15 @@ export async function getCommunityInfoBySlug(slug, setCommunityInfo) {
     const community = await res.json()
     console.log({ community })
     setCommunityInfo(community)
+}
+
+
+export function simplifyDate(data) {
+    if (data) {
+        console.log({ data })
+        return data.toString().split('T')[0]
+    }
+
 }
 
 

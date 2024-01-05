@@ -9,7 +9,6 @@ const tokenBlacklist = [];
 
 async function addUser(req, res, next) {
     req.data = { user: "userfound" }
-    console.log(req.body)
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     if (req.body.password == req.body.password2) {
         const user = new userModule({
@@ -27,7 +26,6 @@ async function addUser(req, res, next) {
 async function authUser(req, res, next) {
     const email = req.body.email
     const password = req.body.password
-    console.log(email)
     const user = await userModule.findOne({ email })
     if (!user) {
         return res.send('User not found');

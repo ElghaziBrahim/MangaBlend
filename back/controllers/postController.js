@@ -17,7 +17,8 @@ function createPost(req, res) {
                 title: post.title,
                 content: post.content,
                 user_id: user.id,
-                username: user.username
+                username: user.username,
+                communitySlug: post.community
             })
             new_post.save()
             res.json({ message: "added done" })
@@ -34,13 +35,11 @@ async function getPostById(req, res) {
     res.send({ post: post, comments: comments })
 }
 
-async function getPostByCo(req, res) {
+async function getPostsByCo(req, res) {
     const comSlug = req.params.co;
-    console.log({ comSlug })
     const posts = await postModule.find({ communitySlug: comSlug }).exec();
-    console.log(posts)
 
     res.send(posts)
 }
 
-module.exports = { getAllPosts, createPost, getPostById, getPostByCo }
+module.exports = { getAllPosts, createPost, getPostById, getPostsByCo }
