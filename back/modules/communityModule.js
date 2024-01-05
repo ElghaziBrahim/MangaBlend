@@ -5,6 +5,6 @@ const community = mongoose.model("community", new mongoose.Schema({
     description: String,
     logo: String,
     slug: String
-}), "community")
+}))
 
 module.exports = community

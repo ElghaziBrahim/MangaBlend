@@ -143,5 +143,12 @@ export async function addNewComment(e, newComment, postId, setShowComments, setP
     console.log({ result })
 }
 
+export async function getCommunityInfoBySlug(slug, setCommunityInfo) {
+    const res = await fetch(`${API_URL}/community/${slug}`)
+    const community = await res.json()
+    console.log({ community })
+    setCommunityInfo(community)
+}
+
 
 

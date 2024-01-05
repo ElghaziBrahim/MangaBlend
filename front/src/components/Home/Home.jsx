@@ -37,12 +37,10 @@ const Home = () => {
     setPostTitle('');
     addPost(post, setPosts);
   };
-
   useEffect(() => {
     authenticateUser(userData, setUserData);
     getPosts(setPosts);
   }, []);
-
   return (
     <div>
       <div className={styles.navbar}>
@@ -75,7 +73,6 @@ const Home = () => {
           )}
         </div>
       </div>
-
       <div className={styles.container}>
         <div className={styles.main}>
           {userData.username ? (
@@ -118,7 +115,6 @@ const Home = () => {
               </div>
             )
           ) : null}
-
           <div className={styles.filters}>
             <div className={styles.filter}>
               <i className="fas fa-rocket fa-2x"></i>
@@ -221,7 +217,6 @@ const Home = () => {
             ))}
           </div>
         </div>
-
         <div className={styles.slider}>
           <input
             type="text"
@@ -230,11 +225,12 @@ const Home = () => {
           />
           <h6>Your Communities</h6>
           <ul>
-            {["Martial Peak", "Nano Machine", "One Piece", "Attack On Titan", "Dragon Ball"].map((community) => (
-              <li key={community} className={styles.community}>
-                {community}
-              </li>
-            ))}
+            <li onClick={() => navigate(`/c/martialpeak`)} className={styles.community}>
+              Martial Peak
+            </li>
+            <li onClick={() => navigate(`/c/nanomachine`)} className={styles.community}>
+              Nano Machine
+            </li>
           </ul>
         </div>
       </div>
