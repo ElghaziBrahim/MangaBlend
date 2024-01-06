@@ -27,17 +27,18 @@ async function authUser(req, res, next) {
     const email = req.body.email
     const password = req.body.password
     const user = await userModule.findOne({ email })
+    console.log({ user })
     if (!user) {
-        return res.send('User not found');
+        return res.send({ type: false, message: 'User Not Found !!' });
     }
-    const isPasswordValid = bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-        return res.send({ message: 'Invalid password' });
+        return res.send({ type: false, message: 'Invalid password !!' });
     }
     const token = jwt.sign({ id: user._id, username: user.username }, "mySecretKey", { expiresIn: "24h" })
     res.json({
-        message: 'worked', data: { username: user.username, gmail: user.email, accesToken: token }
+        type: true, data: { username: user.username, gmail: user.email, accesToken: token }
     })
 }
 function IsUserLogged(req, res) {
@@ -45,6 +46,7 @@ function IsUserLogged(req, res) {
     if (!Authorization) {
         return res.send({ access: false });
     }
+
     const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
 
     jwt.verify(token, 'mySecretKey', async (err, user) => {

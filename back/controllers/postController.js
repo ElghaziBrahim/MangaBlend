@@ -21,7 +21,7 @@ function createPost(req, res) {
                 communitySlug: post.community
             })
             new_post.save()
-            res.json({ message: "added done" })
+            res.json({ message: "added done", post: new_post })
         }
     })
 

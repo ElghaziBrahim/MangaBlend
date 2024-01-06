@@ -8,10 +8,10 @@
 .create {
     display: flex;
     align-items: center;
-    margin-bottom: 20px 0;
     border-radius: 5px;
     background-color: white;
     padding: 10px;
+    margin: 10px 0;
 }
 
 .formNewPost {
@@ -20,6 +20,7 @@
     height: fit-content;
     position: relative;
     padding: 30px 20px;
+    margin: 10px 0;
 }
 
 .formNewPost button {
@@ -162,35 +163,67 @@
     margin: 0;
     position: relative;
 }
+/* Container for the entire comments section */
 
-.commentsPost .comments {
-    border: 1px solid black;
+.commentsPost .comments{
+    margin: 20px auto;
     padding: 20px;
-    width: 100%;
-    border-radius: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     display: block;
-    cursor: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
-.commentsPost .comment {
-    margin-bottom: 10px;
-}
-
-.commentsPost .comments form {
+/* Style for the comment form */
+.commentsPost form {
+    display: flex;
+    margin-bottom: 15px;
     max-width: none;
-    margin-bottom: 30px;
-
 }
 
-.commentsPost .comments form button {
-    background-color: #3498db;
+.commentsPost input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.commentsPost button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-
 }
+
+.commentsPost button:hover {
+    background-color: #45a049;
+}
+
+/* Style for each comment */
+.commentsPost .comment {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Style for the username in the comment */
+.commentsPost .userpost {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style for the content of the comment */
+.commentsPost .contentComment {
+    color: #333;
+}
+
 
 
 .exitcommends {

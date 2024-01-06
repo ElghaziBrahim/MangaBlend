@@ -1,7 +1,6 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:8000';
 
 export const handleLogout = async () => {
-    console.log('Logging out');
 
     const token = localStorage.getItem('token');
     const response = await fetch(`${API_URL}/logout`, {
@@ -13,7 +12,6 @@ export const handleLogout = async () => {
     });
 
     const result = await response.json();
-    console.log(result);
 
     localStorage.removeItem('token');
     window.location.reload();
@@ -46,7 +44,7 @@ export const authenticateUser = async (userData, setUserData) => {
     }
 };
 
-export const addPost = async (post, getdata_posts) => {
+export const addPost = async (post, setPosts) => {
     const data = {
         post,
         token: localStorage.getItem('token'),
@@ -66,9 +64,7 @@ export const addPost = async (post, getdata_posts) => {
     }
 
     const result = await response.json();
-    console.log(result);
-
-    getdata_posts()
+    setPosts((prevPosts) => [result.post, ...prevPosts]);
 };
 
 export const getPosts = async (setPosts) => {
@@ -77,7 +73,6 @@ export const getPosts = async (setPosts) => {
     setPosts(posts);
 };
 export const getPostsByCo = async (setPosts, name) => {
-    console.log(name)
     const response = await fetch(`${API_URL}/post/byco/${name}`);
     const posts = await response.json();
     setPosts(posts);
@@ -125,7 +120,6 @@ export async function addNewComment(e, newComment, postId, setShowComments, getd
         token: localStorage.getItem('token'),
         postId
     };
-    console.log({ data })
 
     const response = await fetch(`${API_URL}/comment/new`, {
         method: 'POST',
@@ -146,14 +140,12 @@ export async function addNewComment(e, newComment, postId, setShowComments, getd
 export async function getCommunityInfoBySlug(slug, setCommunityInfo) {
     const res = await fetch(`${API_URL}/community/${slug}`)
     const community = await res.json()
-    console.log({ community })
     setCommunityInfo(community)
 }
 
 
 export function simplifyDate(data) {
     if (data) {
-        console.log({ data })
         return data.toString().split('T')[0]
     }
 

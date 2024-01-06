@@ -1,8 +1,10 @@
 // SignUp.js
 import React from 'react';
-import styles from './signUp.module.css';
+import styles from './signup.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+
+import { Link } from 'react-router-dom';
 
 
 const SignUp = () => {
@@ -15,7 +17,7 @@ const SignUp = () => {
 
   const AddUser = async (user) => {
     try {
-      const response = await fetch('http://localhost:3000/signup', {
+      const response = await fetch('http://localhost:8000/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +72,7 @@ const SignUp = () => {
         <input type="submit" value="Sign Up" />
 
         <p>
-          Already have an account? <a href="/login">Login</a>
+          Already have an account?    <Link to="/login">Login</Link>
         </p>
       </form>
     </div>

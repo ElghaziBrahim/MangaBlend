@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Posts from '../Posts/Posts';
+import { Link } from 'react-router-dom';
+
 import {
   handleLogout,
   authenticateUser,
@@ -48,7 +50,11 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.container}>
-        < Posts userData={userData} community={"public"} />
+        <div className={styles.main}>
+
+          < Posts userData={userData} community={"public"} />
+        </div>
+
         <div className={styles.slider}>
           <input
             type="text"
@@ -57,11 +63,11 @@ const Home = () => {
           />
           <h6>Your Communities</h6>
           <ul>
-            <li onClick={() => navigate(`/c/martialpeak`)} className={styles.community}>
-              Martial Peak
+            <li className={styles.community}>
+              <Link to="/c/martialpeak">Martial Peak</Link>
             </li>
-            <li onClick={() => navigate(`/c/nanomachine`)} className={styles.community}>
-              Nano Machine
+            <li className={styles.community}>
+              <Link to="/c/nanomachine">Nano Machine</Link>
             </li>
           </ul>
         </div>

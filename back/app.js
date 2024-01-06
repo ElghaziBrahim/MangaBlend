@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://127.0.0.1:27017/MangaBlend')
+mongoose.connect('mongodb+srv://belghazi1305:ms3yZzRw2G74g4@brahimel.p0bcih2.mongodb.net/MangaBlend?retryWrites=true&w=majority')
 
 app.use(express.static("./public"))
 app.use("/post", postRoute)
@@ -26,4 +26,4 @@ app.get("/isuserauth", userController.IsUserLogged)
 app.post("/signup", userController.addUser)
 app.post("/login", userController.authUser)
 
-app.listen(3000, () => console.log("Server running on port 3000"))
+app.listen(8000, () => console.log("Server running on port 8000"))

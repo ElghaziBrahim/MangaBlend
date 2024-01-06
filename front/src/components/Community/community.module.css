@@ -28,48 +28,57 @@ img {
 
 /* Navbar styles */
 .navbar {
-    background-color: #333;
-    color: white;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
 }
 
-.navbar img {
-    width: 40px;
+.navbar .left img {
+    cursor: pointer;
 }
 
-.navbar a h3 {
-    color: white;
+.navbar input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 200px;
 }
 
-.navbar .left,
+.navbar .headerfunctions {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar .headerfunctions i {
+    font-size: 24px;
+    cursor: pointer;
+}
+
 .navbar .right {
     display: flex;
     align-items: center;
 }
 
-.navbar .right * {
-    margin: 0 10px;
-}
-
-.navbar .left img {
-    margin-right: 10px;
+.navbar .right a,
+.navbar .right h3 {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 15px;
     cursor: pointer;
 }
 
-.profileImage {
-    border-radius: 50%;
+.navbar .username {
+    font-weight: bold;
+    margin-right: 10px;
 }
 
-.navbar input {
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: white;
-    color: black;
-    width: fit-content;
-    margin: 0;
+.navbar .profileImage {
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 /* Header styles */
@@ -124,6 +133,7 @@ img {
     padding: 20px;
     border-radius: 8px;
     margin-left: 20px;
+    margin-top: 10px;
     height: fit-content;
     width: 30%;
 }

@@ -2,16 +2,20 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
 import styles from './login.module.css';
+import { Link } from 'react-router-dom';
+
 
 const Login = () => {
   const navigate = useNavigate(); // Change to useNavigate
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorLogin, setErrorLogin] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   const AuthUser = async (user) => {
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('http://localhost:8000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,12 +28,13 @@ const Login = () => {
       }
 
       const result = await response.json();
-      if (result.message === "worked") {
-
+      if (result.type) {
         localStorage.setItem('token', result.data.accesToken);
         navigate("/");
       } else {
+        setErrorMessage(result.message)
         console.log("login failed");
+
         setErrorLogin(true);
       }
     } catch (error) {
@@ -55,8 +60,8 @@ const Login = () => {
         <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
         <input type="submit" value="Login" />
-        {errorLogin && <p className={styles.error}>Username or password incorrect!</p>}
-        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        {errorLogin && <p className={styles.error}>{errorMessage}</p>}
+        <p>Don't have an account?  <Link to="/signup">Sign Up</Link>  </p>
       </form>
     </div>
   );

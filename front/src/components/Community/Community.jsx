@@ -1,52 +1,33 @@
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
 import profile from '../../assets/profile.png';
 import styles from './community.module.css';
 import logo from '../../assets/logo.png';
 import Posts from '../Posts/Posts';
 
-
 import {
     handleLogout,
     authenticateUser,
-    timeAgo,
-    getPostsByCo,
-    openComments,
-    addNewComment,
     getCommunityInfoBySlug,
     simplifyDate,
 } from '../../functions';
 
 export default function Community() {
-    const [userData, setUserData] = useState([]);
-    const [posts, setPosts] = useState([]);
-    const [showComments, setShowComments] = useState(false);
-    const [postComments, setPostComments] = useState([]);
-    const [newComment, setNewComment] = useState('');
+    const [userData, setUserData] = useState({});
     const [communityInfo, setCommunityInfo] = useState({});
     const { name } = useParams();
-
     const navigate = useNavigate();
 
+    // Fetch user data and community information when the component mounts or when the community name changes
     useEffect(() => {
         console.log(`Community ID from useEffect: ${name}`);
         authenticateUser(userData, setUserData);
-        getPostsByCo(setPosts, name);
-        getCommunityInfoBySlug(name, setCommunityInfo)
+        getCommunityInfoBySlug(name, setCommunityInfo);
     }, [name]);
-
-    const handleOpenComments = (postId) => {
-        openComments(postId, setPostComments, setShowComments);
-    };
-
-    const handleAddComment = (e, postId) => {
-        e.preventDefault();
-        addNewComment(e, newComment, postId, setShowComments, setPosts);
-        setNewComment('');
-    };
 
     return (
         <>
+            {/* Navbar */}
             <div className={styles.navbar}>
                 <div className={styles.left}>
                     <img src={logo} alt="MangaBlend" width="50px" onClick={() => navigate('/')} />
@@ -77,7 +58,8 @@ export default function Community() {
                     )}
                 </div>
             </div>
-            {/* <div className={styles.backcolor}></div> */}
+
+            {/* Header */}
             <div className={styles.header}>
                 <div className={styles.contentheader}>
                     <img src={`/src/assets/${name}_wide.png`} alt={`${name} logo`} />
@@ -85,11 +67,14 @@ export default function Community() {
                 </div>
             </div>
 
+            {/* Main Content */}
             <div className={styles.container}>
+                {/* Community Posts */}
                 <div className={styles.community_posts}>
-                    < Posts userData={userData} community={communityInfo.slug} />
+                    <Posts userData={userData} community={communityInfo.slug} />
                 </div>
 
+                {/* About Community */}
                 <div className={styles.about_community}>
                     <div className={styles.title}> About Community</div>
                     <p className={styles.about}>
@@ -97,11 +82,11 @@ export default function Community() {
                     </p>
                     <div className={styles.creaded}>
                         <i className="fas fa-cake-candles fa-xl"></i>
-                        Created At  {simplifyDate(communityInfo.createdAt)}
+                        Created At {simplifyDate(communityInfo.createdAt)}
                     </div>
                     <hr />
                     <div className={styles.statistics}>
-                        <div className={styles.members_number}> {communityInfo.members} members</div>
+                        <div className={styles.members_number}>{communityInfo.members} members</div>
                     </div>
                 </div>
             </div>

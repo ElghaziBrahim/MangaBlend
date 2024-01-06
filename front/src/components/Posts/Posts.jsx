@@ -1,4 +1,3 @@
-// Posts.js
 import React, { useState, useEffect } from 'react';
 import styles from './posts.module.css';
 import {
@@ -16,36 +15,33 @@ const Posts = ({ userData, community }) => {
     const [showComments, setShowComments] = useState(false);
     const [postComments, setPostComments] = useState([]);
     const [newComment, setNewComment] = useState('');
-
-
     const [isAddPost, setIsAddPost] = useState(false);
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
-    function getdata_posts() {
-        if (community != "public") {
-            getPostsByCo(setPosts, community)
+
+    function fetchDataPosts() {
+        if (community !== "public") {
+            getPostsByCo(setPosts, community);
         } else {
             getPosts(setPosts);
         }
     }
+
     useEffect(() => {
-        getdata_posts()
+        fetchDataPosts();
     }, [community]);
 
-    const handleNewPost = (e) => {
+    const handleNewPost = async (e) => {
         e.preventDefault();
         setIsAddPost(false);
-
-
         const post = {
             title: postTitle,
             content: postContent,
             community: community
         };
-
         setPostContent('');
         setPostTitle('');
-        addPost(post, getdata_posts);
+        addPost(post, setPosts);
     };
 
     return (
@@ -131,24 +127,29 @@ const Posts = ({ userData, community }) => {
                             </div>
                             <div className={styles.feathers}>
                                 <div className={styles.comments}>
-                                    <form
-                                        onSubmit={(e) =>
-                                            addNewComment(
-                                                e,
-                                                newComment,
-                                                postComments.post._id,
-                                                setShowComments,
-                                                getdata_posts
-                                            )
-                                        }
-                                    >
-                                        <input
-                                            type="text"
-                                            placeholder="add comment"
-                                            onChange={(e) => setNewComment(e.target.value)}
-                                        />
-                                        <button type="submit">Add</button>
-                                    </form>
+                                    {
+                                        (userData.username) && (
+                                            <form
+                                                onSubmit={(e) =>
+                                                    addNewComment(
+                                                        e,
+                                                        newComment,
+                                                        postComments.post._id,
+                                                        setShowComments,
+                                                        fetchDataPosts
+                                                    )
+                                                }
+                                            >
+                                                <input
+                                                    type="text"
+                                                    placeholder="add comment"
+                                                    onChange={(e) => setNewComment(e.target.value)}
+                                                />
+                                                <button type="submit">Add</button>
+                                            </form>
+                                        )
+                                    }
+
                                     {postComments.comments.map((comment, index) => (
                                         <div key={index} className={styles.comment}>
                                             <div className={styles.userpost}>
