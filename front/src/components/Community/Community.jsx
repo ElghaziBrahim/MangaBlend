@@ -62,7 +62,7 @@ export default function Community() {
             {/* Header */}
             <div className={styles.header}>
                 <div className={styles.contentheader}>
-                    <img src={`/src/assets/${name}_wide.png`} alt={`${name} logo`} />
+                    <img src={`/${name}_wide.png`} alt={`${name} logo`} />
                     <div className={styles.communityname}>{communityInfo.name}</div>
                 </div>
             </div>
