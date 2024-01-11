@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import profile from '../../assets/profile.png';
 import styles from './community.module.css';
-import logo from '../../assets/logo.png';
 import Posts from '../Posts/Posts';
+import Navbar from "../NavBar/NavBar";
+
 
 import {
-    handleLogout,
-    authenticateUser,
     getCommunityInfoBySlug,
     simplifyDate,
 } from '../../functions';
@@ -17,47 +15,18 @@ export default function Community() {
     const [communityInfo, setCommunityInfo] = useState({});
     const { name } = useParams();
     const navigate = useNavigate();
-
-    // Fetch user data and community information when the component mounts or when the community name changes
+    function authUser(user) {
+        setUserData(user)
+    }
     useEffect(() => {
-        console.log(`Community ID from useEffect: ${name}`);
-        authenticateUser(userData, setUserData);
+        
         getCommunityInfoBySlug(name, setCommunityInfo);
     }, [name]);
 
     return (
         <>
-            {/* Navbar */}
-            <div className={styles.navbar}>
-                <div className={styles.left}>
-                    <img src={logo} alt="MangaBlend" width="50px" onClick={() => navigate('/')} />
-                </div>
-                <input type="text" name="search" placeholder="Search Something" />
-                <div className={styles.headerfunctions}>
-                    <i className="fas fa-bell fa-xl"></i>
-                    <i className="fas fa-envelope fa-xl"></i>
-                </div>
-                <div className={styles.right}>
-                    {userData.username ? (
-                        <>
-                            <a onClick={handleLogout}>
-                                <i className="fas fa-right-to-bracket fa-xl"></i>
-                            </a>
-                            <div className={styles.username}>{userData.username}</div>
-                            <img
-                                src={profile}
-                                className={styles.profileImage}
-                                alt="profile picture"
-                                width="50px"
-                            />
-                        </>
-                    ) : (
-                        <a href="/login">
-                            <h3>Login</h3>
-                        </a>
-                    )}
-                </div>
-            </div>
+            <Navbar authUser={authUser} />
+
 
             {/* Header */}
             <div className={styles.header}>

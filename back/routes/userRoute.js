@@ -1,8 +1,10 @@
-const router = require("express").Router()
+const route = require("express").Router()
 
-router.get("/",(req,res)=>{
-    res.send("users")
-})
+const userController = require("../controllers/userController")
 
 
-module.exports=router
+route.get("/search/:key", userController.getUsersBySearch)
+
+
+
+module.exports = route

@@ -11,5 +11,9 @@ async function getCommunityBySlug(req, res) {
 
 
 }
+async function getCommunitiesBySearch(req, res) {
+    const communities = await communityModule.find()
+    res.send(communities)
+}
 
-module.exports = { getCommunityBySlug }
+module.exports = { getCommunityBySlug, getCommunitiesBySearch }

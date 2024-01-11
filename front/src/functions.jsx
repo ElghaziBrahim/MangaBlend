@@ -138,7 +138,7 @@ export async function addNewComment(e, newComment, postId, setShowComments, getd
 }
 
 export async function getCommunityInfoBySlug(slug, setCommunityInfo) {
-    const res = await fetch(`${API_URL}/community/${slug}`)
+    const res = await fetch(`${API_URL}/community/slug/${slug}`)
     const community = await res.json()
     setCommunityInfo(community)
 }
@@ -148,8 +148,19 @@ export function simplifyDate(data) {
     if (data) {
         return data.toString().split('T')[0]
     }
-
 }
 
+export async function getCommunitiesBySearch(key, setCommunities) {
+    const res = await fetch(`${API_URL}/community/search/${key}`)
+    const communities = await res.json()
+    console.log(communities)
+    setCommunities(communities)
+}
 
-
+export async function getUsersBySearch(key, setUsers) {
+    console.log(key)
+    const res = await fetch(`${API_URL}/user/search/${key}`)
+    const users = await res.json()
+    console.log(users)
+    setUsers(users)
+}

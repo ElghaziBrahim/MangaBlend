@@ -75,4 +75,15 @@ function logOutUser(req, res) {
     return res.json({ access: true });
 }
 
-module.exports = { addUser, authUser, IsUserLogged, logOutUser }
+async function getUsersBySearch(req, res) {
+    try {
+        const users = await userModule.find().select('-password');
+        res.send(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+
+module.exports = { addUser, authUser, IsUserLogged, logOutUser, getUsersBySearch }

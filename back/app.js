@@ -5,7 +5,9 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 const postRoute = require("./routes/postRoute")
 const commentRoute = require("./routes/commentRoute")
-const communityRoute = require("./routes/communityModule")
+const communityRoute = require("./routes/communityRoute")
+const userRoute = require("./routes/userRoute")
+
 
 const app = express()
 
@@ -19,6 +21,8 @@ app.use(express.static("./public"))
 app.use("/post", postRoute)
 app.use("/comment", commentRoute)
 app.use("/community", communityRoute)
+app.use("/user", userRoute)
+
 
 
 app.get("/logout", userController.logOutUser)

@@ -42,7 +42,7 @@ img {
 
 
 /* Navbar styles */
-.navbar {
+/* .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -95,7 +95,7 @@ img {
     border-radius: 50%;
     margin-right: 10px;
 }
-
+ */
 /* Header functions styles */
 .headerfunctions i {
     margin-right: 10px;
