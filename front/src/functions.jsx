@@ -67,10 +67,21 @@ export const addPost = async (post, setPosts) => {
     setPosts((prevPosts) => [result.post, ...prevPosts]);
 };
 
-export const getPosts = async (setPosts) => {
-    const response = await fetch(`${API_URL}/post`);
-    const posts = await response.json();
-    setPosts(posts);
+export const getPosts = async (setPosts, isFilter) => {
+    if (isFilter.is) {
+        let key = isFilter.filter
+        /*         isFilter = {{ is: true, filter: searchVal }*/
+        if (key == '') {
+            key = 'all'
+        }
+        const res = await fetch(`${API_URL}/post/search/${key}`)
+        const posts = await res.json();
+        setPosts(posts);
+    } else {
+        const response = await fetch(`${API_URL}/post`);
+        const posts = await response.json();
+        setPosts(posts);
+    }
 };
 export const getPostsByCo = async (setPosts, name) => {
     const response = await fetch(`${API_URL}/post/byco/${name}`);
@@ -151,16 +162,19 @@ export function simplifyDate(data) {
 }
 
 export async function getCommunitiesBySearch(key, setCommunities) {
+    if (key == '') {
+        key = 'all'
+    }
     const res = await fetch(`${API_URL}/community/search/${key}`)
     const communities = await res.json()
-    console.log(communities)
     setCommunities(communities)
 }
 
 export async function getUsersBySearch(key, setUsers) {
-    console.log(key)
+    if (key == '') {
+        key = 'all'
+    }
     const res = await fetch(`${API_URL}/user/search/${key}`)
     const users = await res.json()
-    console.log(users)
     setUsers(users)
 }

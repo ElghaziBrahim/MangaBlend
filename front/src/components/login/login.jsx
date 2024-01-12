@@ -15,6 +15,7 @@ const Login = () => {
 
   const AuthUser = async (user) => {
     try {
+      
       const response = await fetch('http://localhost:8000/login', {
         method: 'POST',
         headers: {

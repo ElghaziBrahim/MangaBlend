@@ -42,4 +42,30 @@ async function getPostsByCo(req, res) {
     res.send(posts)
 }
 
-module.exports = { getAllPosts, createPost, getPostById, getPostsByCo }
+
+async function getPostsBySearch(req, res) {
+    const searchKey = req.params.key;
+    try {
+        console.log(searchKey)
+
+        if (searchKey == 'all') {
+            const posts = await postModule.find();
+            res.send(posts);
+        } else {
+            const posts = await postModule.find({
+                $or: [
+                    { title: { $regex: searchKey, $options: 'i' } }, // Case-insensitive name search
+                    { content: { $regex: searchKey, $options: 'i' } } // Case-insensitive description search
+                ]
+            });
+            res.send(posts);
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+
+module.exports = { getAllPosts, createPost, getPostById, getPostsByCo, getPostsBySearch }

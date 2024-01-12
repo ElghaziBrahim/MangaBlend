@@ -77,8 +77,20 @@ function logOutUser(req, res) {
 
 async function getUsersBySearch(req, res) {
     try {
-        const users = await userModule.find().select('-password');
-        res.send(users);
+        const searchKey = req.params.key
+        if (searchKey == 'all') {
+            const users = await userModule.find().select('-password');
+            res.send(users);
+        } else {
+            const users = await userModule.find({
+                $or: [
+                    { username: { $regex: searchKey, $options: 'i' } }, // Case-insensitive name search
+                    { email: { $regex: searchKey, $options: 'i' } } // Case-insensitive description search
+                ]
+            }).select('-password');
+            res.send(users);
+        }
+
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");

@@ -17,15 +17,10 @@ const Home = () => {
       <div className={styles.container}>
         <div className={styles.main}>
 
-          < Posts userData={userData} community={"public"} />
+          < Posts userData={userData} community={"public"} isFilter={{ is: false }} />
         </div>
 
         <div className={styles.slider}>
-          <input
-            type="text"
-            name="community_filter"
-            placeholder="Filter"
-          />
           <h6>Your Communities</h6>
           <ul>
             <li className={styles.community}>

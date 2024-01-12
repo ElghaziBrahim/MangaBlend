@@ -39,63 +39,6 @@ img {
 }
 
 
-
-
-/* Navbar styles */
-/* .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: #fff;
-}
-
-.navbar .left img {
-    cursor: pointer;
-}
-
-.navbar input[type="text"] {
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px;
-    width: 200px;
-}
-
-.navbar .headerfunctions {
-    display: flex;
-    gap: 10px;
-}
-
-.navbar .headerfunctions i {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.navbar .right {
-    display: flex;
-    align-items: center;
-}
-
-.navbar .right a,
-.navbar .right h3 {
-    text-decoration: none;
-    color: #fff;
-    margin-right: 15px;
-    cursor: pointer;
-}
-
-.navbar .username {
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.navbar .profileImage {
-    border-radius: 50%;
-    margin-right: 10px;
-}
- */
 /* Header functions styles */
 .headerfunctions i {
     margin-right: 10px;
@@ -123,16 +66,10 @@ img {
     border-radius: 5px;
 }
 
-.slider input {
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
 
 .slider h6 {
     font-size: 1.2em;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 /* Community styles */

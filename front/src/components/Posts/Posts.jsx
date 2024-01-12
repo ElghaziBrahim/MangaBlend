@@ -10,7 +10,7 @@ import {
 } from '../../functions';
 import profile from '../../assets/profile.png';
 
-const Posts = ({ userData, community }) => {
+const Posts = ({ userData, community, isFilter }) => {
     const [posts, setPosts] = useState([]);
     const [showComments, setShowComments] = useState(false);
     const [postComments, setPostComments] = useState([]);
@@ -19,11 +19,14 @@ const Posts = ({ userData, community }) => {
     const [postTitle, setPostTitle] = useState('');
     const [postContent, setPostContent] = useState('');
 
+
     function fetchDataPosts() {
         if (community !== "public") {
+
             getPostsByCo(setPosts, community);
         } else {
-            getPosts(setPosts);
+
+            getPosts(setPosts, isFilter);
         }
     }
 

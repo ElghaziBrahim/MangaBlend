@@ -19,7 +19,7 @@ export default function Community() {
         setUserData(user)
     }
     useEffect(() => {
-        
+
         getCommunityInfoBySlug(name, setCommunityInfo);
     }, [name]);
 
@@ -40,7 +40,7 @@ export default function Community() {
             <div className={styles.container}>
                 {/* Community Posts */}
                 <div className={styles.community_posts}>
-                    <Posts userData={userData} community={communityInfo.slug} />
+                    <Posts userData={userData} community={communityInfo.slug} isFilter={{ is: false }} />
                 </div>
 
                 {/* About Community */}

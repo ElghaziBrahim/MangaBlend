@@ -17,6 +17,8 @@ const SignUp = () => {
 
   const AddUser = async (user) => {
     try {
+
+      
       const response = await fetch('http://localhost:8000/signup', {
         method: 'POST',
         headers: {

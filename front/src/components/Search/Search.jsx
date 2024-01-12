@@ -18,7 +18,7 @@ export default function Search() {
 
     const location = useLocation();
     const navigate = useNavigate();
-    const [filter, setFilter] = useState("posts")
+    const [filter, setFilter] = useState("communities")
 
     const [searchVal, setSearchVal] = useState("")
     const [communities, setCommunities] = useState([])
@@ -37,12 +37,11 @@ export default function Search() {
         if (filter == "communities") { getCommunitiesBySearch(q, setCommunities) }
         if (filter == "people") { getUsersBySearch(q, setUsers) }
 
+
     }, [location.search, filter])
-
-
-
-
-
+    useEffect(() => {
+        if(filter == "posts") { setFilter("communities") }
+    }, [location.search])
 
     return (
         <>
@@ -61,7 +60,7 @@ export default function Search() {
                 </div>
                 {
                     (filter == "posts") ? (
-                        <Posts userData={userData} community="public" />
+                        <Posts userData={userData} community="public" isFilter={{ is: true, filter: searchVal }} />
                     ) : (filter == "communities") ? (
                         <div className={styles.communities}>
                             {
@@ -76,9 +75,7 @@ export default function Search() {
                                                 <h5>{c.members} members</h5>
                                             </div>
                                         </div>
-
                                     </div>
-
 
                                 ))
                             }
@@ -103,10 +100,6 @@ export default function Search() {
                     )
                 }
             </div >
-
-
-
         </>
-
     )
 }
