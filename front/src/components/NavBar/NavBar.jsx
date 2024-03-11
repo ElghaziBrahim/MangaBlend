@@ -46,11 +46,6 @@ export default function Navbar({ authUser }) {
                 onChange={(e) => setSearchVal(e.target.value)}
                 value={searchVal}
             />
-
-            <div className={styles.headerfunctions}>
-                <i className="fas fa-bell fa-xl"></i>
-                <i className="fas fa-envelope fa-xl"></i>
-            </div>
             <div className={styles.right}>
                 {userData.username ? (
                     <>
